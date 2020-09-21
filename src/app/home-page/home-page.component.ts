@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormsModule , NgModel } from '@angular/forms';
 import { } from 'googlemaps';
+import { RequestsService } from '../requests.service';
+
 // import { ViewChild } from '@angular/core';
 @Component({
   selector: 'app-home-page',
@@ -7,62 +10,58 @@ import { } from 'googlemaps';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
+
+
   @ViewChild('map', { static: true }) mapElement: any;
-  // public mapElement = document.getElementById('map');
+
   public infoWindow = new google.maps.InfoWindow();
+
+  
   map: google.maps.Map;
-  constructor() { }
+  public directionsService = new google.maps.DirectionsService();
+  public directionsRenderer = new google.maps.DirectionsRenderer();
+  public to;
+  public from;
+  public request;
+
+  constructor(private requestsService:RequestsService) { }
 
   ngOnInit(): void {
+ 
     const mapProperties = {
-      center: new google.maps.LatLng(35.2271, -80.8431),
-      zoom: 10,
+      center: new google.maps.LatLng(20.0123533,64.4487244),
+      zoom: 4,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    navigator.geolocation.getCurrentPosition((pos)=>{
-      console.log(pos);
-        var position = {
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude
-        };
-
-        this.infoWindow.setPosition(position);
-        this.infoWindow.setContent('Location found.');
-        this.infoWindow.open(this.map);
-        this.map.setCenter(position);
-      
-    })
     
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-    // console.log(this.infoWindow);
-    
-    // this.infoWindow = new google.maps.InfoWindow;
-    // if (navigator.geolocation) {
-    //   navigator.geolocation.getCurrentPosition(function (position) {
-    //     var pos = {
-    //       lat: position.coords.latitude,
-    //       lng: position.coords.longitude
-    //     };
-
-    //     this.infoWindow.setPosition(pos);
-    //     this.infoWindow.setContent('Location found.');
-    //     this.infoWindow.open(this.map);
-    //     this.map.setCenter(pos);
-    //   }, function () {
-    //     this.handleLocationError(true, this.infoWindow, this.map.getCenter());
-    //   });
-    // } else {
-    //   // Browser doesn't support Geolocation
-    //   this.handleLocationError(false, this.infoWindow, this.map.getCenter());
-    // }
+    this.directionsRenderer.setMap(this.map);
 
   }
-  
-  // handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  //   infoWindow.setPosition(pos);
-  //   infoWindow.setContent(browserHasGeolocation ?
-  //     'Error: The Geolocation service failed.' :
-  //     'Error: Your browser doesn\'t support geolocation.');
-  //   this.infoWindow.open(this.map);
-  // }
+
+  getDirections(){
+    this.getRoutes(this.directionsService,this.directionsRenderer);
+  }
+
+  getRoutes(
+    directionsService: google.maps.DirectionsService,
+    directionsRenderer: google.maps.DirectionsRenderer
+    ){
+      this.request = {
+        origin: this.from,
+        destination: this.to,
+        provideRouteAlternatives: true,
+        travelMode: 'DRIVING'
+      };
+      directionsService.route(this.request, function(result, status) {
+        if (status == 'OK') {
+          console.log(result);
+          
+          directionsRenderer.setDirections(result);
+        } else {
+          console.log('Directions request failed due to ' + status)
+        }
+      });
+    }
+
 }

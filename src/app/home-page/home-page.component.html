@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-4 offset-1">
       <div class="form-group">
      
@@ -11,16 +11,87 @@
       <div class="col-4 offset-1">
         <div class="form-group">
           <label for="">From</label>
-          <input type="text" class="form-control" placeholder="From">
+          <input type="text" class="form-control" name="from" [(ngModel)]="from" placeholder="From">
         </div>
       </div>
       <div class="col-4 offset-1">
         <div class="form-group">
           <label for="">To</label>
-          <input type="text" class="form-control" placeholder="From">
+          <input type="text" class="form-control" name="to" [(ngModel)]="to" placeholder="To">
         </div>
       </div>
-      
+      <div class="form-group">
+        <label>Submit</label>
+        <button class="btn btn-success form-control" (click)="getDirections()">Submit</button>
+      </div>
     </div>
   </form>
   <div #map style="width:100%;height:400px"></div>
+ -->
+<section class="back">
+  <nav class="navbar navbar-expand-lg" style="background-color: #bfbac7;">
+    <h3 class="m-2" style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,">Accident Informer</h3>
+  </nav>
+  <div class="row photo">
+      <img src="../../assets/roadnew.jpg" style="width: 100%; height: 80vh;">
+  </div>
+
+</section>
+<section>
+  <div class="row">
+    <div class="col-3">
+      <img src="../../assets/directions.jpeg" alt="">
+    </div>
+    <div class="col-7 offset-1" style="margin-top: 25vh;">
+      <h3>Finds low traffic paths so you reach your destination before time. This is especially a life saving concept for
+        accident victims.</h3>
+    </div>
+  </div>
+</section>
+<br><br>
+<section>
+  <div class="row pb-3">
+    <div class="col-4 offset-1">
+      <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> Get Direction</h2>
+    </div>
+  </div>
+  <div class="row px-3">
+    <div class="col-3 offset-1">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-2">
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> From: </h4>
+          </div>
+          <div class="col-9 offset-md-1">
+            <input type="text" class="form-control" id="inputPassword2" placeholder="From">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 offset-1">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-1">
+            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> To: </h4>
+          </div>
+          <div class="col-10 offset-md-1">
+            <input type="text" class="form-control" id="inputPassword2" placeholder="To">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 offset-1">
+      <div class="form-group">
+        <button type="submit" class="btn btn-dark btn-block pr-3">Submit</button>
+      </div>
+    </div>
+  </div>
+</section>
+<br><br>
+<section>
+  <div class="row">
+    <div class="col-8 offset-md-2">
+      <div #map  class="mapping" style="width:100%;height:400px"></div>
+    </div>
+  </div>
+</section>

@@ -1,3 +1,14 @@
-/* #map {
-    height: 70%;
-  } */
+.back{
+  position: relative;
+  background-color: #bfbac7;
+  /* color: #bfbac7; */
+}
+
+/* .photo{
+  position: inherit;
+  top: 5vh;
+} */
+
+.mapping{
+  border-radius: 5%;
+}

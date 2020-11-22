@@ -68,40 +68,43 @@
 <section>
   <div class="row pb-3">
     <div class="col-4 offset-1">
-      <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> Get Direction</h2>
+      <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> Get Directions</h2>
     </div>
   </div>
-  <div class="row px-3">
-    <div class="col-3 offset-1">
-      <div class="form-group">
-        <div class="row">
-          <div class="col-2">
-            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> From: </h4>
-          </div>
-          <div class="col-9 offset-md-1">
-            <input type="text" class="form-control" id="inputPassword2" placeholder="From">
+  <br>
+  <form action="" method="POST">
+    <div class="row px-3">
+      <div class="col-3 offset-1">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-2">
+              <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> From: </h4>
+            </div>
+            <div class="col-8 offset-md-1">
+              <input type="text" class="form-control" id="inputPassword2" placeholder="From" name="from" [(ngModel)]="from">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-3 offset-1">
-      <div class="form-group">
-        <div class="row">
-          <div class="col-1">
-            <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> To: </h4>
-          </div>
-          <div class="col-10 offset-md-1">
-            <input type="text" class="form-control" id="inputPassword2" placeholder="To">
+      <div class="col-3 offset-1">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-1">
+              <h4 style="font-family: Georgia, 'Times New Roman', Times, serif;justify-content: left,"> To: </h4>
+            </div>
+            <div class="col-8 offset-md-1">
+              <input type="text" class="form-control" id="inputPassword2" placeholder="To" name="to" [(ngModel)]="to">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-3 offset-1">
-      <div class="form-group">
-        <button type="submit" class="btn btn-dark btn-block pr-3">Submit</button>
+      <div class="col-2 offset-1">
+        <div class="form-group">
+          <button type="submit" class="btn btn-dark pr-3 submit-btn" (click)="getDirections()">Submit</button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </section>
 <br><br>
 <section>
@@ -115,4 +118,32 @@
 
 </section>
 <br><br>
-<h2 style="text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;"> Accidents</h2>
+<section>
+  <h2 style="text-align: center;font-family: Georgia, 'Times New Roman', Times, serif;"> Accidents</h2>
+  <div class="row">
+    <div class="col-2 offset-md-2">
+      <button class="submit-btn" (click)="reportAccident()">Report</button>
+    </div>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Latitude</th>
+        <th scope="col">Longitude</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let accident of accidents;let i=index">
+        <th scope="row">{{ i }}</th>
+        <td>{{ accident.location.lat }}</td>
+        <td>{{ accident.location.long }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+
+</section>
+<!-- <app-report-accident></app-report-accident> -->

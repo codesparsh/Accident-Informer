@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule , NgModel } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { } from 'googlemaps';
 import { RequestsService } from '../requests.service';
+import { ReportAccidentComponent } from '../report-accident/report-accident.component';
 
 // import { ViewChild } from '@angular/core';
 @Component({
@@ -23,11 +25,17 @@ export class HomePageComponent implements OnInit {
   public to;
   public from;
   public request;
-
-  constructor(private requestsService:RequestsService) { }
+  public accidents;
+  constructor(private requestsService:RequestsService, private modalService: NgbModal) { 
+    this.accidents=[];
+  }
 
   ngOnInit(): void {
- 
+    this.requestsService.getAccidents().subscribe((accident)=>{
+      this.accidents=accident;
+      console.log(this.accidents);
+    })
+    
     const mapProperties = {
       center: new google.maps.LatLng(20.0123533,64.4487244),
       zoom: 4,
@@ -36,6 +44,7 @@ export class HomePageComponent implements OnInit {
     
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
     this.directionsRenderer.setMap(this.map);
+
 
   }
 
@@ -63,5 +72,11 @@ export class HomePageComponent implements OnInit {
         }
       });
     }
+
+   reportAccident(){
+    this.modalService.open(ReportAccidentComponent);
+   } 
+
+
 
 }

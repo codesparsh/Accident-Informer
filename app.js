@@ -3,21 +3,35 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var cors = require('cors')
+
 var app = express();
+
+const url = 'mongodb://localhost:27017/accidents';
+
+const connect = mongoose.connect(url,{ useNewUrlParser: true });
+connect.then((db)=>{
+  console.log('connected correctly to serve to accidents');
+},(err)=>{console.log(err)});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors({origin:'http://localhost:4200'}))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

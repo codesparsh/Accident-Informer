@@ -6,7 +6,10 @@ var accidents = Schema({
         type:Object
     },
     location:{
-        type:JSON
+        type:String
+    },
+    latlng:{
+        type:Object
     }
 
 })

@@ -7,7 +7,9 @@ var Accidents = require('../models/accident');
 router.post('/report-accident',function(req, res, next) {
   Accidents.create({
     photo:req.body.photo,
-    location:req.body.location
+    location:req.body.location,
+    latlng:req.body.latlng
+
   }).then((accident)=>{
     res.send(accident);
     console.log(accident);

@@ -9,6 +9,40 @@
   top: 5vh;
 } */
 
+.header{
+  height: 60vh;
+  width: 100%;
+  background-image:url(../../assets/roadnew.jpg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+}
+.header h1{
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+ 
+}
+.rows::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.cols {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+.textblock {
+    width: 109px; /*need to give width*/
+    display: inline-table; /*ie not supported*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
 .mapping{
   border-radius: 5%;
 }
@@ -70,9 +104,14 @@
 }
 .centered {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 647px;
+  height: 63px;
+  left: 190px;
+  top: 90px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 63px;  
 }
 
 .submit-btn{
@@ -82,4 +121,22 @@
   background-color: #bfbac7;
   border-radius: 12px;
   width: 100%;
+}
+.hover-item{
+  background-color: rgb(204, 29, 29);
+}
+.img{
+  width: 100%;
+  height: auto;
+  
+}
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #A8232A;
+  border-radius: 50%;
+  display: inline-block;
+  margin: auto;
+  border:5px solid #000;
+  
 }

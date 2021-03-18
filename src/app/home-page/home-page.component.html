@@ -50,7 +50,7 @@
     <div class="d-flex justify-content-center form-div">
       <div class="row ">
         <form action="" method="POST">
-          <form class="form-inline">
+          <!-- <form class="form-inline">
             <div class="row">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg"
@@ -69,6 +69,19 @@
                 <button type="submit" class="btn btn-success" (click)="getDirections()">Submit</button>
               </div>
             </div>
+          </form> -->
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="colFormLabelLg" style="font-family: Georgia, 'Times New Roman', Times, serif ">From :</label>
+              <input type="text" class="form-control" id="inputPassword2" placeholder="From" name="from"
+                [(ngModel)]="from">
+
+              <label for="colFormLabelLg" style="font-family: Georgia, 'Times New Roman', Times, serif ">To :</label>
+              <input type="text" class="form-control" id="inputPassword2" placeholder="To" name="to" [(ngModel)]="to">
+
+              <br>
+              <button type="submit" class="btn btn-success" (click)="getDirections()">Submit</button>
+            </div>
           </form>
         </form>
       </div>
@@ -81,12 +94,13 @@
       </div>
     </div>
   </section>
-  
+
   <section class="set accident-mob">
 
     <div class="container-fluid">
 
-      <div class="text-center m-5" >
+      <div class="text-center m-5">
+        <br><br><br>
         <h2 style="font-family: Georgia, 'Times New Roman', Times, serif;text-align: center;"> Accidents</h2>
       </div>
       <div class="col-lg-12 text-center">
@@ -99,15 +113,15 @@
 
 
         <tr *ngFor="let accident of accidents;let i=index">
-  
+
           <th class="dot"></th>
-          
+
           <th scope="row">{{ accident.location }}</th>
-  
+
           <td></td>
-  
+
         </tr>
-  
+
       </table>
     </div>
 

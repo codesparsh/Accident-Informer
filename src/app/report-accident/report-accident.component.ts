@@ -21,13 +21,15 @@ export class ReportAccidentComponent implements OnInit {
   public photo;
   public latlng;
   constraints = {
+    audio: false,
     video: {
-      facingMode: "environment",
-      width: { ideal: 4096 },
-      height: { ideal: 2160 }
+        width: { ideal: 640 },
+        height: { ideal: 360 },
+        facingMode: "environment"
     }
-  };
+};
  
+
   
   constructor(private requestService: RequestsService, private renderer: Renderer2) {
     this.captures = [];
@@ -100,7 +102,11 @@ export class ReportAccidentComponent implements OnInit {
 
     })
   }
-  
+  closemodal()
+  {
+    var modal=document.getElementById("modal");
+    modal.style.display="none";
+  }
 
   geocodeLatLng(
     geocoder: google.maps.Geocoder,

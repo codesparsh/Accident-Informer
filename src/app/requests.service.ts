@@ -5,7 +5,7 @@ import { HttpClient , HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class RequestsService {
 
-  public backendURL = "http://localhost:3000/";
+  public backendURL = "";
   public directionsURL = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?";
   public api_key = "AIzaSyD6_3OqaGltffOaYOfROZSVEJTFznfRdFU";
   public geocoding="https://maps.googleapis.com/maps/api/geocode/json?";
